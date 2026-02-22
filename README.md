@@ -51,12 +51,36 @@ All 8 files are included in the ZIP. You can also download the 5 step files indi
 - [Claude Code](https://claude.com/claude-code) CLI installed
 - A completed planning phase (all 5 [BookWeaverAI](https://bookweaver.ai) steps done and exported)
 
-### Initialize Project
+### Clone the Template
 
-1. **Unzip your export** into the CCWriting directory:
+The fastest way to get started is to clone the template repository. This gives you the full project structure, CLAUDE.md, agent configurations, and all slash commands — ready to go.
 
 ```bash
-cd CCWriting
+git clone https://github.com/dhwilliams/claudecodewriting.git YourNovelTitle
+cd YourNovelTitle
+```
+
+Then drop in your [BookWeaverAI](https://bookweaver.ai) export:
+
+```bash
+# Unzip the BookWeaverAI (https://bookweaver.ai) export
+unzip ~/Downloads/Your_Project_BookWeaver_Export.zip -d .
+
+# Commit with your planning files
+git add .
+git commit -m "Writing project initialized with planning files"
+```
+
+You're ready to write. Skip ahead to [Commands](#commands).
+
+### Initialize Manually (Alternative)
+
+If you prefer to set things up from scratch instead of cloning:
+
+1. **Unzip your export** into your project directory:
+
+```bash
+mkdir YourNovelTitle && cd YourNovelTitle
 
 # Unzip the BookWeaverAI (https://bookweaver.ai) export
 unzip ~/Downloads/Your_Project_BookWeaver_Export.zip -d .
@@ -82,6 +106,8 @@ git init
 git add .
 git commit -m "Writing project initialized"
 ```
+
+You will also need to copy the `CLAUDE.md`, `.claude/` directory, and any skill/agent configurations from the [template repository](https://github.com/dhwilliams/claudecodewriting.git) for the slash commands and agents to work.
 
 ### Required Planning Files
 
