@@ -12,13 +12,13 @@ write scene → approve → update tracking → (repeat)
               all chapter scenes done → build chapter → approve → append to manuscript
 ```
 
-## Getting Your Planning Files from BookWeaverAI
+## Getting Your Planning Files from [BookWeaverAI](https://bookweaver.ai)
 
-The planning files used by this writing system come from the **BookWeaverAI** web app. BookWeaverAI guides you through 5 AI-powered steps to develop your story from initial concept to a detailed scene-by-scene plan. Once all 5 steps are complete, you export everything and bring it here.
+The planning files used by this writing system come from the **[BookWeaverAI](https://bookweaver.ai)** web app. [BookWeaverAI](https://bookweaver.ai) guides you through 5 AI-powered steps to develop your story from initial concept to a detailed scene-by-scene plan. Once all 5 steps are complete, you export everything and bring it here.
 
-### Export from BookWeaverAI
+### Export from [BookWeaverAI](https://bookweaver.ai)
 
-1. Complete all 5 steps in the BookWeaverAI app:
+1. Complete all 5 steps in the [BookWeaverAI](https://bookweaver.ai) app:
    - **Step 1**: Novel Concept
    - **Step 2**: Starter Template
    - **Step 3**: Expanded Outline
@@ -49,7 +49,7 @@ All 8 files are included in the ZIP. You can also download the 5 step files indi
 ### Prerequisites
 
 - [Claude Code](https://claude.com/claude-code) CLI installed
-- A completed planning phase (all 5 BookWeaverAI steps done and exported)
+- A completed planning phase (all 5 [BookWeaverAI](https://bookweaver.ai) steps done and exported)
 
 ### Initialize Project
 
@@ -58,7 +58,7 @@ All 8 files are included in the ZIP. You can also download the 5 step files indi
 ```bash
 cd CCWriting
 
-# Unzip the BookWeaverAI export
+# Unzip the BookWeaverAI (https://bookweaver.ai) export
 unzip ~/Downloads/Your_Project_BookWeaver_Export.zip -d .
 ```
 
@@ -85,7 +85,7 @@ git commit -m "Writing project initialized"
 
 ### Required Planning Files
 
-After setup, these files must all be present before you start writing. All come from the BookWeaverAI ZIP export:
+After setup, these files must all be present before you start writing. All come from the [BookWeaverAI](https://bookweaver.ai) ZIP export:
 
 | File | Purpose |
 |------|---------|
