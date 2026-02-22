@@ -35,10 +35,22 @@ Discrepancies between what `CONTINUITY_TRACKER.md` says and what the manuscript 
 - Scenes that may need revision
 - Patterns to watch for going forward
 
-## Step 3: Fix Tracker
+## Step 3: Fix Discrepancies
 
-If the audit found discrepancies in `CONTINUITY_TRACKER.md`, ask the user:
+If the audit found discrepancies, ask the user:
 
-> The audit found [N] discrepancies in the continuity tracker. Would you like me to update it now to match the manuscript?
+> The audit found [N] discrepancies. Would you like me to fix them now?
 
-If approved, make the corrections.
+If approved, make corrections. **Critical rule: any text fix must be applied across ALL locations where that text exists.** The same prose may live in up to three places:
+
+1. `scenes/scene_X_Y.md` — the scene archive file
+2. `chapters/chapter_X.md` — the assembled chapter file (if the chapter has been built)
+3. `manuscript/CURRENT_MANUSCRIPT.md` — the full manuscript (if the chapter has been appended)
+
+When fixing a text discrepancy:
+- Use Grep to find the text in all three locations
+- Apply the fix to every file where it appears
+- Verify all copies match after the fix
+- If only the tracker or scene-number references need correction (not prose text), those only exist in their respective files
+
+Similarly, if fixing `CONTINUITY_TRACKER.md` data (scene numbers, details, etc.), verify the correction against the actual manuscript text before committing.
