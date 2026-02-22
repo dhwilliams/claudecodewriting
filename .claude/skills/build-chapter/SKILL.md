@@ -1,6 +1,6 @@
 ---
 name: build-chapter
-description: Assemble all completed scenes for a chapter into a formatted chapter file, review it, and append to the manuscript. Usage: /project:build-chapter 4
+description: Assemble all completed scenes for a chapter into a formatted chapter file and append to the manuscript. Usage: /project:build-chapter 4
 allowed-tools: Read, Write, Edit, Glob, Grep, Bash, Task
 ---
 
@@ -46,25 +46,9 @@ Wait for confirmation before proceeding.
 
 Wait for the agent to complete.
 
-## Step 5: Present for Review
+## Step 5: Append to Manuscript
 
-Show the user:
-- The assembled chapter file path
-- Chapter word count
-- Number of scenes included
-- Any transition flags from the chapter-builder agent
-
-Then say:
-
-> Chapter [X]: [Title] is ready for your review. Read through `chapters/chapter_X.md` and let me know if it's good to append to the manuscript, or if you'd like adjustments.
-
-**STOP HERE. Wait for user approval before proceeding.**
-
-If the user requests edits, make them to `chapters/chapter_X.md` and present again.
-
-## Step 6: Append to Manuscript (After Approval)
-
-Append the chapter to `manuscript/CURRENT_MANUSCRIPT.md` using this format:
+After the chapter-builder agent completes successfully, **immediately append** the chapter to `manuscript/CURRENT_MANUSCRIPT.md`. Do NOT wait for separate user approval — the scenes were already individually approved during writing. Append using this format:
 
 - If the manuscript is NOT empty, add a `---` separator before the chapter
 - Then add the full chapter content (including the `# Chapter X: [Title]` header)
@@ -86,7 +70,7 @@ If the manuscript IS empty (first chapter), omit the leading `---`:
 [full chapter content]
 ```
 
-## Step 7: Git Commit
+## Step 6: Git Commit
 
 Stage and commit:
 
@@ -104,7 +88,7 @@ Assembled Chapter X: [Title]
 
 Do NOT push to remote.
 
-## Step 8: Report
+## Step 7: Report
 
 Tell the user:
 - Chapter word count
