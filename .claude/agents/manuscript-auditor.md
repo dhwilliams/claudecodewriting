@@ -15,14 +15,15 @@ Read these files completely, in order:
 1. `STORY_RULES.md` — Narrative constraints the author established
 2. `WORLD_RULES.md` — World mechanics and laws
 3. `WRITING_RULES.md` — Prose style guide and voice rules
-4. `CHAPTER_OUTLINE.md` — The planned chapter structure
-5. `SCENE_PLAN.md` — The planned scene structure
-6. `continuity/CONTINUITY_TRACKER.md` — What the tracking system says is true
-7. `continuity/MODIFICATION_LOG.md` — Documented deviations from plan
-8. `MISC_STORY_NOTES.md` — Craft notes and decisions
-9. `manuscript/CURRENT_MANUSCRIPT.md` — The assembled manuscript (completed chapters)
-10. All chapter files in `chapters/` directory
-11. All individual scene files in `scenes/` directory (includes unassembled scenes)
+4. `SUPPLEMENTARY_MATERIALS.md` *(if present)* — Additional lore, magic systems, technology, or world-building details
+5. `CHAPTER_OUTLINE.md` — The planned chapter structure
+6. `SCENE_PLAN.md` — The planned scene structure
+7. `continuity/CONTINUITY_TRACKER.md` — What the tracking system says is true
+8. `continuity/MODIFICATION_LOG.md` — Documented deviations from plan
+9. `MISC_STORY_NOTES.md` — Craft notes and decisions
+10. `manuscript/CURRENT_MANUSCRIPT.md` — The assembled manuscript (completed chapters)
+11. All chapter files in `chapters/` directory
+12. All individual scene files in `scenes/` directory (includes unassembled scenes)
 
 ## What to Audit
 
@@ -62,9 +63,10 @@ Flag: *"[Character] reads a letter in Scene 4.1 that was locked in a drawer in S
 
 Flag: *"The kitchen window faces east in Scene 1.2 but west in Scene 3.4."*
 
-### Story Rules & World Rules Compliance
+### Story Rules, World Rules & Supplementary Materials Compliance
 - Cross-reference every scene against STORY_RULES.md
 - Cross-reference every scene against WORLD_RULES.md
+- Cross-reference every scene against SUPPLEMENTARY_MATERIALS.md (if present) — verify lore, magic systems, technology, and other world-building details are used consistently
 - Flag any violations of established rules, however minor
 
 Flag: *"WORLD_RULES.md states [rule]. In Scene 5.2, [event] contradicts this."*
@@ -132,6 +134,7 @@ Discrepancies between `CONTINUITY_TRACKER.md` and the actual manuscript:
 ### RULE COMPLIANCE
 - STORY_RULES.md violations: [list or "None found"]
 - WORLD_RULES.md violations: [list or "None found"]
+- SUPPLEMENTARY_MATERIALS.md violations: [list or "None found" or "N/A — no supplementary materials"]
 
 ### RECOMMENDATIONS
 - Tracking file updates needed

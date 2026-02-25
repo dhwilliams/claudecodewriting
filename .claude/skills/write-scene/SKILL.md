@@ -26,10 +26,11 @@ Read these files completely. Do not skim. Do not summarize. Read every line:
 2. `WRITING_RULES.md` — Prose style guide
 3. `STORY_RULES.md` — Narrative constraints and conventions
 4. `WORLD_RULES.md` — World mechanics and laws
-5. `CHAPTER_OUTLINE.md` — Find the chapter containing the target scene. Read the full chapter context.
-6. `SCENE_PLAN.md` — Find and read the specific scene plan entry plus the entries for the scenes immediately before and after it
-7. `continuity/CONTINUITY_TRACKER.md` — Current state of all characters, world, timeline
-8. `MISC_STORY_NOTES.md` — Recent craft notes and story developments
+5. `SUPPLEMENTARY_MATERIALS.md` *(if present)* — Additional lore, magic systems, technology, or world-building reference
+6. `CHAPTER_OUTLINE.md` — Find the chapter containing the target scene. Read the full chapter context.
+7. `SCENE_PLAN.md` — Find and read the specific scene plan entry plus the entries for the scenes immediately before and after it
+8. `continuity/CONTINUITY_TRACKER.md` — Current state of all characters, world, timeline
+9. `MISC_STORY_NOTES.md` — Recent craft notes and story developments
 
 Then read the **previous 2-3 scenes** from `scenes/` for voice continuity. If writing scene 4.3, read scenes 4.2 and 4.1 (and 3.6 if 4.1 is the first scene in the chapter).
 

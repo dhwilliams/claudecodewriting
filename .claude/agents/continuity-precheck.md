@@ -35,7 +35,8 @@ Check `chapters/` to see which chapters have been assembled. Then read any scene
 6. `WRITING_RULES.md` — Prose style guide and voice notes (for Scene Brief voice section)
 7. `STORY_RULES.md` — Narrative constraints (for rule-sensitive elements)
 8. `WORLD_RULES.md` — World mechanics (for world-sensitive elements)
-9. The most recent 3-5 scenes from `scenes/` directory
+9. `SUPPLEMENTARY_MATERIALS.md` *(if present)* — Additional lore, magic systems, technology, or world-building details
+10. The most recent 3-5 scenes from `scenes/` directory
 
 ### Large Manuscript Protocol
 

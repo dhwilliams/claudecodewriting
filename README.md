@@ -44,6 +44,10 @@ The planning files used by this writing system come from the **[BookWeaverAI](ht
 
 All 8 files are included in the ZIP. You can also download the 5 step files individually from the export page.
 
+### Supplementary Materials (Optional)
+
+If your story involves deep world-building — magic systems, future technology, alien species, detailed histories, constructed languages, or other lore — create a `SUPPLEMENTARY_MATERIALS.md` file and place it in the project root alongside your other planning files. This is a free-form reference document that Claude reads during every writing session, just like the rules files. It's especially useful for sci-fi, fantasy, and other genres where the world has mechanics or details that go beyond what fits in `WORLD_RULES.md`.
+
 ## Setup
 
 ### Prerequisites
@@ -123,6 +127,7 @@ After setup, these files must all be present before you start writing. All come 
 | `WRITING_RULES.md` | Prose style guide, voice rules |
 | `STORY_RULES.md` | Narrative constraints and conventions |
 | `WORLD_RULES.md` | World mechanics and laws |
+| `SUPPLEMENTARY_MATERIALS.md` | *(Optional)* Additional lore, magic systems, tech specs, etc. |
 
 ## Commands
 
@@ -287,6 +292,7 @@ CCWriting/
 ├── EXPANDED_OUTLINE.md               # Full outline
 ├── CHAPTER_OUTLINE.md                # Chapter breakdown with titles
 ├── SCENE_PLAN.md                     # Scene checklist
+├── SUPPLEMENTARY_MATERIALS.md        # (Optional) Additional lore and world-building
 ├── SCENE_COMPLETION_STATUS.md        # Progress tracking
 ├── MISC_STORY_NOTES.md               # Craft notes and decisions
 ├── CLAUDE.md                         # Writing philosophy and protocols
@@ -380,9 +386,10 @@ If you prefer not to use the slash commands, these prompts replicate the workflo
 **Scene generation:**
 ```
 Read CLAUDE.md, WRITING_RULES.md, STORY_RULES.md, WORLD_RULES.md, CHAPTER_OUTLINE.md,
-SCENE_PLAN.md, and continuity/CONTINUITY_TRACKER.md. Then read the previous 2-3 scenes
-from scenes/ for voice continuity. Write scene [X.Y] following all CLAUDE.md protocols.
-Create the file at scenes/scene_X_Y.md. Do not commit until I approve.
+SCENE_PLAN.md, SUPPLEMENTARY_MATERIALS.md (if present), and continuity/CONTINUITY_TRACKER.md.
+Then read the previous 2-3 scenes from scenes/ for voice continuity. Write scene [X.Y]
+following all CLAUDE.md protocols. Create the file at scenes/scene_X_Y.md. Do not commit
+until I approve.
 ```
 
 **Post-scene:**

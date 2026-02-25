@@ -22,6 +22,7 @@ Read these files:
 - `CHAPTER_OUTLINE.md` — Find the chapter title for this chapter
 - `WRITING_RULES.md` — For voice and formatting reference
 - `STORY_RULES.md` — For narrative conventions
+- `SUPPLEMENTARY_MATERIALS.md` *(if present)* — For additional lore and world-building reference
 - All scene files for this chapter, in order
 - The previous chapter file from `chapters/` (if one exists) — for transition awareness
 

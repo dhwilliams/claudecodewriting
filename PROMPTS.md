@@ -184,9 +184,10 @@ If you prefer manual control, these are the improved versions of your original p
 **Scene generation:**
 ```
 Read CLAUDE.md, WRITING_RULES.md, STORY_RULES.md, WORLD_RULES.md, CHAPTER_OUTLINE.md,
-SCENE_PLAN.md, and continuity/CONTINUITY_TRACKER.md. Then read the previous 2-3 scenes
-from scenes/ for voice continuity. Write scene [X.Y] following all CLAUDE.md protocols.
-Create the file at scenes/scene_X_Y.md. Do not commit until I approve.
+SCENE_PLAN.md, SUPPLEMENTARY_MATERIALS.md (if present), and continuity/CONTINUITY_TRACKER.md.
+Then read the previous 2-3 scenes from scenes/ for voice continuity. Write scene [X.Y]
+following all CLAUDE.md protocols. Create the file at scenes/scene_X_Y.md. Do not commit
+until I approve.
 ```
 
 **Post-scene:**

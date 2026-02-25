@@ -13,6 +13,7 @@ Before beginning any writing session, ensure these planning files are present in
 - `EXPANDED_OUTLINE.md` - Complete novel outline
 - `CHAPTER_OUTLINE.md` - Novel implementation blueprint with chapter-by-chapter breakdowns
 - `SCENE_PLAN.md` - Detailed scene-by-scene plan with checklist format
+- `SUPPLEMENTARY_MATERIALS.md` *(optional)* - Additional world-building, lore, magic systems, technology, or reference material provided by the user. Common for sci-fi, fantasy, and other genres with deep world mechanics.
 
 The following files are created during Project Setup and accumulate content as you write:
 
@@ -122,6 +123,7 @@ git checkout -b writing-[DATE]-[SCENE-NUMBERS]
 - EXPANDED_OUTLINE.md
 - CHAPTER_OUTLINE.md
 - SCENE_PLAN.md
+- SUPPLEMENTARY_MATERIALS.md (if present)
 - manuscript/CURRENT_MANUSCRIPT.md
 - MISC_STORY_NOTES.md
 
@@ -243,7 +245,7 @@ git commit -m "Completed Scene [X].[Y]: [Scene Title]
 1. **Read SCENE_PLAN.md completely** to identify next incomplete scene (marked `- [ ]`)
 2. **Review CONTINUITY_TRACKER.md** for current character locations, emotional states, timeline
 3. **Check MISC_STORY_NOTES.md** for recent craft notes and story developments
-4. **Read WRITING_RULES.md**, **STORY_RULES.md**, **WORLD_RULES.md**, **FINAL_NOVEL_CONCEPT.md**, and **CHAPTER_OUTLINE.md** for voice/tone consistency, world/story constraints, and chapter-level context
+4. **Read WRITING_RULES.md**, **STORY_RULES.md**, **WORLD_RULES.md**, **FINAL_NOVEL_CONCEPT.md**, **CHAPTER_OUTLINE.md**, and **SUPPLEMENTARY_MATERIALS.md** (if present) for voice/tone consistency, world/story constraints, supplementary lore/world-building, and chapter-level context
 5. **Read manuscript/CURRENT_MANUSCRIPT.md** and any unassembled scenes in `scenes/` — absorb the complete narrative state before writing
 6. **Create git branch**: `git checkout -b writing-[DATE]-[SCENE-NUMBERS]`
 
@@ -268,6 +270,7 @@ git commit -m "Completed Scene [X].[Y]: [Scene Title]
    - Write the scene's warmth with as much precision as its dread — tenderness raises the stakes
    - Ensure all story conventions from STORY_RULES.md are followed
    - Ensure all world mechanics from WORLD_RULES.md are respected
+   - Incorporate any relevant details from SUPPLEMENTARY_MATERIALS.md (if present) — lore, magic systems, technology, etc.
    - Create the scene in the scenes directory. See step 4 below. Do not create the scene in the claude window for review first.
 4. **Create scene file** as `/scenes/scene_[X]_[Y].md`
 5. **SHOW SCENE TO USER** and ask: "Please review and let me know if it's good or if you'd like me to edit anything"
