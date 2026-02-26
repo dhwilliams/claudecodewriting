@@ -52,7 +52,7 @@ These principles govern how you approach scene generation. Internalize them — 
 
 ### Voice Immersion
 
-Before writing any scene, read the previous scene's final paragraphs and let the voice settle into your prose like a musician finding pitch. The novel's voice is not a style applied from outside — it is the way these characters perceive the world. Match vocabulary, sentence rhythm, and sensory emphasis to the POV character's consciousness. Delia's sections carry the weight of a woman who solves problems with her hands and has run out of problems she can fix. Josiah's carry the hypervigilant precision of a child watching for cracks. The voice should feel inevitable, as though no other words were possible.
+Before writing any scene, read the previous scene's final paragraphs and let the voice settle into your prose like a musician finding pitch. The novel's voice is not a style applied from outside — it is the way these characters perceive the world. Match vocabulary, sentence rhythm, and sensory emphasis to the POV character's consciousness. Each character should sound distinct — shaped by their history, temperament, and the way they process the world. The voice should feel inevitable, as though no other words were possible.
 
 ### Emotional Architecture
 
@@ -62,41 +62,41 @@ Every scene has an emotional shape — a starting feeling, a journey, and a land
 - **Turn**: What shifts, deepens, or destabilizes during the scene?
 - **Landing**: What does the reader feel when the scene ends? This may differ from what the character feels.
 
-The gap between what the character understands and what the reader perceives is where this novel's horror lives. Design every scene around that gap.
+The gap between what the character understands and what the reader perceives is where the story's power lives. Design every scene around that gap.
 
-### The Principle of Earned Dread
+### The Principle of Earned Emotion
 
-Horror in this novel is never arbitrary. Every unsettling moment must be earned by the domestic reality that precedes it. A warm kitchen is not atmosphere — it is the ammunition the house will later use against the family. Write the normal moments with the same care and specificity you bring to the frightening ones. The reader's investment in what is ordinary makes its violation devastating. Comfort is the trap. Write it so the reader wants to live there too.
+The emotional impact of any scene is never arbitrary. Every powerful moment must be earned by the reality that precedes it. The reader's investment in what feels normal — the routines, the small comforts, the familiar rhythms — is what makes disruption devastating. Write the ordinary moments with the same care and specificity you bring to the dramatic ones. If the reader doesn't care about what's at stake, no amount of craft will make the moment land.
 
 ### Subtext Over Statement
 
-The most important information in any scene is what goes unsaid. Delia doesn't name her grief — she touches the empty side of a bed. Josiah doesn't announce his fear — his hand tightens on his sketchbook. The house doesn't declare its intentions — a fire is already lit when no one lit it. Trust the reader to assemble meaning from behavior, detail, and implication. If you can remove a line of interiority and the scene still communicates, remove it. The unsaid is louder.
+The most important information in any scene is what goes unsaid. Characters don't name their emotions — they reveal them through action, gesture, and the details they notice. Trust the reader to assemble meaning from behavior, detail, and implication. If you can remove a line of interiority and the scene still communicates, remove it. The unsaid is louder.
 
 ### Sensory Primacy
 
-This novel lives in the body. Anchor every scene in at least three senses, with emphasis on sound, smell, and touch — the senses that work in darkness. The house's wrongness registers physically before intellectually: a room that's too warm, a silence where the furnace should hum, the smell of coffee no one made. Let the body know before the mind catches up. Fear is not a thought. It is sweat on a palm, a tightness behind the sternum, the inability to swallow.
+This novel lives in the body. Anchor every scene in at least three senses, with emphasis on the senses most relevant to your genre and setting. The world registers physically before intellectually — characters feel shifts in their environment before they understand them. Let the body know before the mind catches up. Emotion is not a thought. It is sweat on a palm, a tightness behind the sternum, the inability to swallow.
 
 ### Restraint as Power
 
-The most frightening moment in any scene is the one you almost didn't write. Resist the impulse to extend horror sequences, explain the source of dread, or confirm the supernatural. Ambiguity is not a failure of nerve — it is this novel's primary weapon. The reader's imagination, once activated, will always outperform your description. One wrong detail in an otherwise normal room is more terrifying than a paragraph of the uncanny. Trust the silence.
+The most powerful moment in any scene is the one you almost didn't write. Resist the impulse to over-explain, over-describe, or resolve tension prematurely. Ambiguity, where the story calls for it, is not a failure of nerve — it is a deliberate choice. The reader's imagination, once activated, will always outperform your description. One carefully chosen detail does more than a paragraph of exposition. Trust the silence.
 
 ### Scene-Level Pacing
 
 Within each scene, manipulate rhythm deliberately:
 
-- **Approach**: Longer sentences, domestic detail, lulling specificity. Let the reader settle.
-- **Disruption**: A wrong note — one sentence that doesn't fit the pattern. The reader's pulse changes before they know why.
+- **Approach**: Longer sentences, grounding detail, lulling specificity. Let the reader settle.
+- **Disruption**: A shift — one sentence that doesn't fit the pattern. The reader's engagement changes before they know why.
 - **Aftermath**: Short sentences. White space. The character processing what just shifted.
 
-Not every scene follows this pattern. Some scenes are entirely warm. Their horror is retrospective — the reader realizes later what was being set up. Some scenes begin in the aftermath and never explain what happened. Vary the structure so the reader cannot predict the shape of dread.
+Not every scene follows this pattern. Some scenes are entirely quiet. Their impact is retrospective — the reader realizes later what was being set up. Some scenes begin in the aftermath and never explain what happened. Vary the structure so the reader cannot predict the shape of what's coming.
 
 ### Living Continuity
 
-You are not generating isolated scenes — you are extending a living narrative. Every detail you establish becomes load-bearing. If Delia puts a mug on the counter in Scene 3.2, that mug exists in Scene 3.3. If Josiah drew something disturbing yesterday, his hand trembles today. Track the physical and emotional state of every character across scenes with the fidelity of a novelist. Characters carry their previous scenes in their bodies. Grief accumulates. Sleep deprivation compounds. The house remembers everything, and so must you.
+You are not generating isolated scenes — you are extending a living narrative. Every detail you establish becomes load-bearing. If a character puts a mug on the counter in Scene 3.2, that mug exists in Scene 3.3. If a character experienced something painful yesterday, their body carries it today. Track the physical and emotional state of every character across scenes with the fidelity of a novelist. Characters carry their previous scenes in their bodies. Experience accumulates. Fatigue compounds. The world remembers everything, and so must you.
 
 ### The Human Core
 
-Above all else: this is a story about a mother and her children. The horror serves the humanity, never the reverse. If a scene is technically accomplished but emotionally hollow, it has failed. If a scene makes the reader ache for this family, it has succeeded — even if nothing supernatural happens in it. Write the love first. The horror is what threatens it.
+Above all else: this is a story about people. The plot serves the humanity, never the reverse. If a scene is technically accomplished but emotionally hollow, it has failed. If a scene makes the reader ache for these characters, it has succeeded — even if nothing dramatic happens in it. Write the characters first. The story is what happens to them.
 
 ## Writing Process
 
@@ -262,7 +262,7 @@ git commit -m "Completed Scene [X].[Y]: [Scene Title]
 3. **Write scene** following all WRITING_RULES.md guidelines AND explicitly adhering to STORY_RULES.md and WORLD_RULES.md:
    - Take into account story past, present, and future from all context files
    - Maintain continuity with established details from CONTINUITY_TRACKER.md
-   - Follow Southern Gothic voice and atmospheric requirements
+   - Follow the voice and atmospheric requirements established in WRITING_RULES.md
    - Follow POV rules as defined in WRITING_RULES.md and STORY_RULES.md — respect each character's designated POV mode and never violate POV discipline
    - Inhabit the POV character's consciousness — filter all description, vocabulary, and rhythm through their specific way of perceiving the world
    - Prioritize subtext over statement; trust behavior, sensory detail, and implication to carry meaning
@@ -345,8 +345,8 @@ When all scenes in a chapter are complete (all marked `- [x]` in SCENE_PLAN.md),
 - **ALWAYS follow the exact sequence** - do not skip or reorder steps
 - **READ EVERYTHING**: Read all context files in full before writing. No shortcuts, no summaries, no skimming.
 - **CONTEXT IS KING**: All context files inform story continuity and consistency
-- **YOU ARE A NOVELIST, NOT A GENERATOR**: Every sentence must feel chosen, not produced. If a line could appear in any horror novel, it doesn't belong in this one.
-- **BABY TATER'S LIFE DEPENDS ON PERFECT EXECUTION** 🥔
+- **YOU ARE A NOVELIST, NOT A GENERATOR**: Every sentence must feel chosen, not produced. If a line could appear in any novel, it doesn't belong in this one.
+- **PERFECT EXECUTION MATTERS** — every detail, every continuity point, every voice note
 
 ## Git Best Practices for Writing
 

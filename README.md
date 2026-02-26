@@ -318,23 +318,23 @@ Tracking files (`CONTINUITY_TRACKER.md`, `MISC_STORY_NOTES.md`, `MODIFICATION_LO
 Chapters are separated by `---`. Scenes within a chapter are separated by `* * *`.
 
 ```markdown
-# Chapter 1: The Arrival
+# Chapter 1: [Title]
 
-The truck rattled up the gravel drive...
+[Scene 1 prose text...]
 
 * * *
 
-By evening, the boxes were stacked in the hallway...
+[Scene 2 prose text...]
 
 ---
 
-# Chapter 2: First Night
+# Chapter 2: [Title]
 
-She couldn't say what woke her...
+[Scene 1 prose text...]
 
 * * *
 
-The kitchen light was already on when she came downstairs...
+[Scene 2 prose text...]
 ```
 
 ## Creating a Synopsis / Book Jacket Blurb
