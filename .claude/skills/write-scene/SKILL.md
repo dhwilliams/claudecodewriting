@@ -1,6 +1,6 @@
 ---
 name: write-scene
-description: Begin writing a specific scene. Runs continuity precheck, loads context, and writes the scene following all CLAUDE.md protocols. Usage: /project:write-scene 4.3
+description: Begin writing a specific scene. Runs continuity precheck and voice profiling, loads context, writes the scene, validates it, and presents for review. Usage: /project:write-scene 4.3
 allowed-tools: Read, Glob, Grep, Write, Edit, Task, Bash
 ---
 
@@ -12,11 +12,21 @@ Write scene **$ARGUMENTS** (format: chapter.scene — e.g. "4.3" means Chapter 4
 
 If no argument is provided, read `SCENE_PLAN.md` and identify the next incomplete scene (first `- [ ]` entry).
 
-## Phase 1: Continuity Precheck
+## Phase 1: Pre-Writing Analysis (Parallel Agents)
 
-**Spawn the `continuity-precheck` agent** using the Task tool. Pass it the target scene number. This agent reads the full manuscript in its own context window and produces a Scene Brief — a compressed document with everything you need for continuity.
+Determine the POV character for this scene by reading the scene plan entry in `SCENE_PLAN.md` and/or `CHAPTER_OUTLINE.md`.
 
-Wait for the Scene Brief before proceeding. If the manuscript is empty or very short (fewer than 3 scenes written), skip this phase and proceed to Phase 2.
+**Spawn two agents in parallel:**
+
+1. **`continuity-precheck` agent** — Pass it the target scene number. This agent reads the full manuscript and produces a Scene Brief with everything needed for continuity.
+
+2. **`voice-profiler` agent** — Pass it the POV character's name and the target scene number. This agent reads all previous scenes by this POV character and produces a Voice Profile with vocabulary patterns, sentence rhythm, sensory focus, and distinctive tics.
+
+Wait for both agents to complete before proceeding.
+
+**Skip conditions:**
+- If the manuscript is empty or very short (fewer than 3 scenes written), skip the continuity-precheck
+- If this is the POV character's first scene, skip the voice-profiler
 
 ## Phase 2: Context Loading
 
@@ -34,7 +44,7 @@ Read these files completely. Do not skim. Do not summarize. Read every line:
 
 Then read the **previous 2-3 scenes** from `scenes/` for voice continuity. If writing scene 4.3, read scenes 4.2 and 4.1 (and 3.6 if 4.1 is the first scene in the chapter).
 
-Finally, incorporate the **Scene Brief** from the continuity-precheck agent.
+Finally, incorporate the **Scene Brief** and **Voice Profile** from the Phase 1 agents.
 
 ## Phase 3: Pre-Writing Preparation
 
@@ -46,6 +56,7 @@ Before generating any prose, state explicitly in the chat:
 - **Landing**: What the reader should feel when the scene ends (which may differ from what the character feels)
 - **Key Continuity Points**: Established details that must appear or be honored
 - **Active Threads**: Plot threads, subtext, or planted elements that surface here
+- **Voice Anchors**: 2-3 specific voice characteristics from the Voice Profile to maintain (e.g., "short declarative sentences when stressed", "leads with smell", "avoids introspection — processes through action")
 
 This is not optional. Writing without this preparation produces generic prose.
 
@@ -59,15 +70,44 @@ While writing:
 - Inhabit the POV character's consciousness completely
 - Anchor in at least three senses (emphasize sound, smell, touch)
 - Prioritize subtext over statement — the most important things go unsaid
-- Match vocabulary and sentence rhythm to this specific character's voice
+- Match vocabulary and sentence rhythm to this specific character's voice, guided by the Voice Profile
 - Honor every established detail from CONTINUITY_TRACKER.md and the Scene Brief
 - Follow STORY_RULES.md and WORLD_RULES.md absolutely — no exceptions
 - Let the emotional architecture from Phase 3 guide the scene's shape
 
-## Phase 5: Present for Review
+## Phase 5: Scene Validation
 
-After writing the scene, tell the user:
+After writing the scene, **spawn the `scene-validator` agent**. Pass it:
+- The scene number
+- The scene file path
+- The Scene Brief (if available)
 
-> Scene [X].[Y]: [Scene Title] is ready for your review. Read through and let me know if it's good or if you'd like any adjustments.
+The validator reads the scene against all continuity data and rules files. It will:
+- **Auto-fix minor issues** (object positions, time references, small continuity details) directly in the scene file
+- **Flag major issues** (character knowledge violations, POV breaks, rule violations, plot contradictions) for author decision
+
+Wait for the validation report.
+
+## Phase 6: Present for Review
+
+Present the scene to the user. Include any information from the validation:
+
+**If the scene was clean:**
+> Scene [X].[Y]: [Scene Title] is ready for your review. Validation passed with no issues. Read through and let me know if it's good or if you'd like any adjustments.
+
+**If minor fixes were applied:**
+> Scene [X].[Y]: [Scene Title] is ready for your review. The validator made [N] minor continuity fixes:
+> - [fix 1]
+> - [fix 2]
+>
+> Read through and let me know if it's good or if you'd like any adjustments.
+
+**If major issues were flagged:**
+> Scene [X].[Y]: [Scene Title] is ready for your review. The validator flagged [N] issues that need your input:
+>
+> **[Issue 1]**: [Description and suggestion]
+> **[Issue 2]**: [Description and suggestion]
+>
+> Let me know how you'd like to handle these, and whether the rest of the scene looks good.
 
 **STOP HERE. Do not proceed with any file updates, commits, or tracking changes until the user explicitly approves the scene.** If the user requests edits, make them to the scene file and present again. Repeat until approved.

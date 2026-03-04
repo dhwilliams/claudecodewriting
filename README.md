@@ -140,12 +140,13 @@ Your primary writing command. Handles everything from continuity analysis to sce
 ```
 
 What happens:
-1. Spawns the **continuity-precheck** agent to read the full manuscript and produce a Scene Brief
-2. Loads all rules files, scene plan, chapter outline, and the Scene Brief
+1. Spawns the **continuity-precheck** and **voice-profiler** agents in parallel — one produces a Scene Brief, the other a Voice Profile for the POV character
+2. Loads all rules files, scene plan, chapter outline, Scene Brief, and Voice Profile
 3. Reads the previous 2-3 scenes for voice continuity
-4. States the emotional architecture (entry state, turn, landing) before writing
+4. States the emotional architecture (entry state, turn, landing) and voice anchors before writing
 5. Writes the scene directly to `scenes/scene_X_Y.md`
-6. Presents for your review — **waits for approval before anything else happens**
+6. Spawns the **scene-validator** agent to check for continuity errors and rule violations — auto-fixes minor issues, flags major ones
+7. Presents for your review with validation results — **waits for approval before anything else happens**
 
 If no scene number is given, it picks up the next incomplete scene from `SCENE_PLAN.md`.
 
@@ -200,8 +201,9 @@ Run every 5-10 scenes, at act breaks, or whenever something feels off.
 
 What happens:
 1. Spawns the **manuscript-auditor** agent to read the entire manuscript plus all tracking files
-2. Audits character consistency, timeline integrity, object tracking, location details, POV discipline, voice drift, rules compliance, planted elements, and chapter assembly integrity
+2. Audits character consistency, timeline integrity, object tracking, location details, POV discipline, voice drift, rules compliance, planted elements, chapter assembly integrity, and **outline drift**
 3. Presents findings sorted by severity: Critical > Minor > Recommendations
+4. Includes an **Outline Drift** section comparing the manuscript's trajectory against the original plan
 
 Good times to run an audit:
 - End of Act 1
@@ -210,6 +212,22 @@ Good times to run an audit:
 - Before the climax
 - After any major revelation or plot twist
 
+### `/project:end-session`
+
+Run when you're done writing for the day. Handles all wrap-up tasks automatically.
+
+```
+/project:end-session
+```
+
+What happens:
+1. Checks for uncommitted work and prompts to commit if needed
+2. Spawns the **session-closer** agent to summarize today's work
+3. Creates a session notes file in `session-notes/` with scenes completed, key developments, craft observations, and tomorrow's starting point
+4. Merges the current writing branch to `draft-v1`
+5. Pushes to remote if configured
+6. Reports final progress stats
+
 ## Agents
 
 These run in **separate context windows** so they can load the full manuscript without crowding your writing session.
@@ -217,9 +235,12 @@ These run in **separate context windows** so they can load the full manuscript w
 | Agent | Model | Purpose | Spawned By |
 |-------|-------|---------|------------|
 | `continuity-precheck` | Opus | Reads full manuscript, produces compressed Scene Brief | `write-scene` |
+| `voice-profiler` | Opus | Analyzes POV character's voice across all their scenes, produces Voice Profile | `write-scene` |
+| `scene-validator` | Sonnet | Checks written scene for continuity errors and rule violations. Auto-fixes minor issues, flags major ones | `write-scene` |
 | `file-updater` | Sonnet | Updates all tracking files after scene approval | `post-scene` |
 | `chapter-builder` | Sonnet | Assembles scene files into a formatted chapter | `build-chapter` |
-| `manuscript-auditor` | Opus | Deep continuity and consistency audit | `continuity-audit` |
+| `manuscript-auditor` | Opus | Deep continuity, consistency, and outline drift audit | `continuity-audit` |
+| `session-closer` | Sonnet | Produces session summary and creates session notes file | `end-session` |
 
 ## Writing Session Workflow
 
@@ -263,9 +284,11 @@ Review the assembled chapter. Approve to add it to the manuscript.
 
 ### End of Session
 
-- Session notes are created in `session-notes/`
-- Merge to your draft branch: `git checkout draft-v1 && git merge [branch]`
-- Push if configured
+```
+/project:end-session
+```
+
+Handles everything: creates session notes in `session-notes/`, merges to draft-v1, pushes if a remote is configured.
 
 ## File Structure
 

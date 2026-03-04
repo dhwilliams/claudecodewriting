@@ -26,13 +26,14 @@ Your primary writing command. Replaces manual prompting.
 ```
 
 What happens:
-1. Spawns the **continuity-precheck** agent to read the full manuscript and produce a Scene Brief
-2. Loads CLAUDE.md, rules files, scene plan, chapter outline, and the Scene Brief
+1. Spawns the **continuity-precheck** and **voice-profiler** agents in parallel — one produces a Scene Brief, the other a Voice Profile for the POV character
+2. Loads CLAUDE.md, rules files, scene plan, chapter outline, Scene Brief, and Voice Profile
 3. Reads the previous 2-3 scenes for voice continuity
-4. Identifies the emotional architecture (entry state, turn, landing)
+4. Identifies the emotional architecture (entry state, turn, landing) and voice anchors
 5. Writes the complete scene directly to `scenes/scene_X_Y.md`
-6. Presents for your review
-7. **Waits for your approval** — nothing else happens until you say it's good
+6. Spawns the **scene-validator** agent to check for continuity errors and rule violations — auto-fixes minor issues, flags major ones
+7. Presents for your review with validation results
+8. **Waits for your approval** — nothing else happens until you say it's good
 
 ### `/project:post-scene`
 
@@ -84,7 +85,24 @@ What happens:
 3. Checks for voice drift across POV characters
 4. Reports planted elements (set up, paid off, or dangling)
 5. Verifies `CONTINUITY_TRACKER.md` accuracy against the actual manuscript
-6. Presents findings sorted by severity (Critical → Minor → Recommendations)
+6. Analyzes **outline drift** — compares manuscript trajectory against the original plan
+7. Presents findings sorted by severity (Critical → Minor → Recommendations)
+
+### `/project:end-session`
+
+Run when you're done writing for the day. Automates all wrap-up tasks.
+
+```
+/project:end-session
+```
+
+What happens:
+1. Checks for uncommitted work and prompts to commit if needed
+2. Spawns the **session-closer** agent to summarize today's work
+3. Creates a session notes file in `session-notes/` with scenes completed, key developments, craft observations, and tomorrow's starting point
+4. Merges the current writing branch to `draft-v1`
+5. Pushes to remote if configured
+6. Reports final progress stats
 
 ## Agents
 
@@ -93,9 +111,12 @@ These run in **separate context windows** so they can read the full manuscript w
 | Agent | Purpose | Model | Spawned By |
 |-------|---------|-------|------------|
 | `continuity-precheck` | Pre-scene analysis → Scene Brief | Opus | `write-scene` skill |
+| `voice-profiler` | POV character voice analysis → Voice Profile | Opus | `write-scene` skill |
+| `scene-validator` | Post-write continuity and rules check | Sonnet | `write-scene` skill |
 | `file-updater` | Post-scene mechanical file updates | Sonnet | `post-scene` skill |
 | `chapter-builder` | Assembles scenes into a chapter file | Sonnet | `build-chapter` skill |
-| `manuscript-auditor` | Deep continuity and consistency audit | Opus | `continuity-audit` skill |
+| `manuscript-auditor` | Deep continuity, consistency, and outline drift audit | Opus | `continuity-audit` skill |
+| `session-closer` | End-of-session summary and notes | Sonnet | `end-session` skill |
 
 ## Complete Session Workflow
 
@@ -145,10 +166,11 @@ Review the findings. Fix critical issues immediately. Note minor issues for revi
 
 ### End of Session
 
-Use the normal CLAUDE.md end-of-session protocol:
-- Session notes created in `session-notes/`
-- Merge to draft branch
-- Push if configured
+```
+/project:end-session
+```
+
+Handles everything: creates session notes, merges to draft-v1, pushes if configured.
 
 ## Tips for Maximum Continuity
 

@@ -97,6 +97,20 @@ Track every piece of foreshadowing, setup, or Chekhov's gun:
 - Verify chapter ordering in the manuscript is correct
 - Check that scene breaks (`* * *`) and chapter separators (`---`) are properly formatted
 
+### Outline Drift
+Compare the manuscript as written against the original plan. Read `EXPANDED_OUTLINE.md` and `CHAPTER_OUTLINE.md` alongside `continuity/MODIFICATION_LOG.md` and the actual manuscript.
+
+Analyze:
+- **Arc trajectory**: Is the overall story arc tracking with the planned outline, or has it diverged? Where?
+- **Cumulative modifications**: Read every entry in MODIFICATION_LOG.md. What is the net effect of all modifications taken together? Do they push the story in a consistent new direction, or are they scattered?
+- **Character evolution vs. plan**: Have any characters grown beyond or away from their outline descriptions? Are motivations, relationships, or roles shifting from what was planned?
+- **Pacing drift**: Is the story moving faster or slower than the outline anticipated? Are scenes running longer or shorter than expected? Are acts/parts hitting their planned beats at roughly the right points?
+- **Dropped threads**: Are there plot threads or subplots from the outline that haven't been introduced when they should have been?
+- **Added threads**: Has the manuscript introduced significant threads not in the outline? Are these strengthening or diluting the story?
+- **Thematic drift**: Are the themes from the outline being reinforced, or have new themes emerged that compete with or replace the planned ones?
+
+This is NOT about enforcing the outline — drift can be good. The purpose is to make the author aware of where they are vs. where they planned to be, so they can make intentional decisions about whether to course-correct or embrace the new direction.
+
 ## Output Format
 
 Produce a structured report:
@@ -135,6 +149,28 @@ Discrepancies between `CONTINUITY_TRACKER.md` and the actual manuscript:
 - STORY_RULES.md violations: [list or "None found"]
 - WORLD_RULES.md violations: [list or "None found"]
 - SUPPLEMENTARY_MATERIALS.md violations: [list or "None found" or "N/A — no supplementary materials"]
+
+### OUTLINE DRIFT
+
+**Overall trajectory**: [On track / Minor drift / Significant divergence]
+
+**Arc comparison**:
+- **Planned**: [Where the outline says the story should be at this point]
+- **Actual**: [Where the story actually is]
+- **Divergence**: [Specific points where plan and manuscript part ways]
+
+**Cumulative modifications**: [N] logged changes. Net effect: [Summary of the direction modifications are pushing the story]
+
+**Character drift**:
+- [Character]: [How they've evolved vs. their outline description. Intentional growth or unplanned drift?]
+
+**Pacing assessment**: [Faster/slower than planned. Which acts/parts are ahead or behind schedule?]
+
+**Threads**:
+- Dropped from outline: [threads that should have appeared by now but haven't]
+- Added to manuscript: [threads not in the outline that have emerged]
+
+**Recommendation**: [Course-correct / Embrace the drift / Update the outline to match / Mixed — specific suggestions]
 
 ### RECOMMENDATIONS
 - Tracking file updates needed

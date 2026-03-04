@@ -328,16 +328,12 @@ When all scenes in a chapter are complete (all marked `- [x]` in SCENE_PLAN.md),
 
 ### END OF SESSION PROTOCOL
 
-**DAILY WRAP-UP TASKS:**
-1. **Update progress tracking** with scenes completed, word counts
-2. **Review continuity notes** for any concerns or inconsistencies identified
-3. **Create session summary** in `/session-notes/[TODAY'S_DATE]-SCENES_[RANGE_COMPLETED].md`:
-   - Summary of scenes completed today
-   - Key story developments and character moments
-   - Any concerns or notes for tomorrow's session
-4. **Merge to draft-v1 branch**: `git checkout draft-v1 && git merge [current-branch]`
-   - **If draft-v1 doesn't exist**: Notify user immediately
-5. **Push to remote repository** if configured (ignore if not setup)
+Run `/project:end-session` to automate all wrap-up tasks:
+1. Checks for uncommitted work
+2. Creates session summary in `session-notes/`
+3. Merges to draft-v1 branch
+4. Pushes to remote if configured
+5. Reports final progress stats
 
 ### CRITICAL REMINDERS FOR CLAUDE
 
