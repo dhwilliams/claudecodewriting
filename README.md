@@ -7,10 +7,12 @@ A structured workflow for writing a novel with Claude Code, designed to maintain
 You write one scene at a time. After each scene is approved, tracking files are updated automatically. When all scenes in a chapter are done, you assemble them into a chapter file and append it to the manuscript. Specialized agents run in separate context windows to handle manuscript reading, file updates, and continuity auditing — keeping the main writing session focused on craft.
 
 ```
-write scene → approve → update tracking → (repeat)
-                                            ↓
+write scene → approve → update tracking + wiki → (repeat)
+                                                   ↓
               all chapter scenes done → build chapter → approve → append to manuscript
 ```
+
+A **story wiki** — a set of compiled, cross-referenced knowledge pages — sits alongside the tracking files and serves as persistent memory for characters, locations, plot threads, world mechanics, and timeline. It's built once from your planning files and kept current automatically after each scene.
 
 ## Getting Your Planning Files from [BookWeaverAI](https://bookweaver.ai)
 
@@ -96,7 +98,7 @@ This extracts all 8 planning files (5 steps + 3 rules files) into the directory.
 
 ```bash
 # Create directories
-mkdir -p {manuscript,scenes,chapters,session-notes,continuity}
+mkdir -p {manuscript,scenes,chapters,session-notes,continuity,wiki/{characters,locations,plot-threads,world}}
 
 # Create tracking files
 touch manuscript/CURRENT_MANUSCRIPT.md
@@ -110,6 +112,8 @@ git init
 git add .
 git commit -m "Writing project initialized"
 ```
+
+3. **Build the story wiki** (see [Story Wiki](#story-wiki) section below)
 
 You will also need to copy the `CLAUDE.md`, `.claude/` directory, and any skill/agent configurations from the [template repository](https://github.com/dhwilliams/claudecodewriting.git) for the slash commands and agents to work.
 
@@ -159,14 +163,15 @@ Run after you approve a scene. Handles all mechanical file updates.
 ```
 
 What happens:
-1. Spawns the **file-updater** agent to update all tracking files
+1. Spawns the **file-updater** agent to update all tracking files and wiki pages
 2. Updates `continuity/CONTINUITY_TRACKER.md` with every new detail from the scene
 3. Updates `MISC_STORY_NOTES.md` with craft analysis
 4. Documents any deviations in `continuity/MODIFICATION_LOG.md`
-5. Marks the scene complete in `SCENE_PLAN.md`
-6. Updates `SCENE_COMPLETION_STATUS.md`
-7. Git commits all changes
-8. Reports chapter progress — if all scenes in the chapter are done, prompts you to build the chapter
+5. Updates relevant `wiki/` pages (characters, locations, plot threads, timeline)
+6. Marks the scene complete in `SCENE_PLAN.md`
+7. Updates `SCENE_COMPLETION_STATUS.md`
+8. Git commits all changes
+9. Reports chapter progress — if all scenes in the chapter are done, prompts you to build the chapter
 
 You can combine approval and post-scene in one message:
 ```
@@ -234,10 +239,10 @@ These run in **separate context windows** so they can load the full manuscript w
 
 | Agent | Model | Purpose | Spawned By |
 |-------|-------|---------|------------|
-| `continuity-precheck` | Opus | Reads full manuscript, produces compressed Scene Brief | `write-scene` |
+| `continuity-precheck` | Opus | Reads full manuscript + wiki pages, produces compressed Scene Brief | `write-scene` |
 | `voice-profiler` | Opus | Analyzes POV character's voice across all their scenes, produces Voice Profile | `write-scene` |
 | `scene-validator` | Sonnet | Checks written scene for continuity errors and rule violations. Auto-fixes minor issues, flags major ones | `write-scene` |
-| `file-updater` | Sonnet | Updates all tracking files after scene approval | `post-scene` |
+| `file-updater` | Sonnet | Updates all tracking files and wiki pages after scene approval | `post-scene` |
 | `chapter-builder` | Sonnet | Assembles scene files into a formatted chapter | `build-chapter` |
 | `manuscript-auditor` | Opus | Deep continuity, consistency, and outline drift audit | `continuity-audit` |
 | `session-closer` | Sonnet | Produces session summary and creates session notes file | `end-session` |
@@ -304,6 +309,13 @@ CCWriting/
 │   ├── scene_1_1.md                  # Individual scene archive
 │   ├── scene_1_2.md
 │   └── ...
+├── wiki/                             # Compiled story knowledge base
+│   ├── characters/                   # One page per major character
+│   ├── locations/                    # One page per significant location
+│   ├── plot-threads/                 # One page per major plot thread
+│   ├── world/                        # World mechanics (magic, politics, tech, etc.)
+│   ├── themes.md                     # Core themes and manifestations
+│   └── timeline.md                   # Chronological event sequence
 ├── continuity/
 │   ├── CONTINUITY_TRACKER.md         # Character states, objects, timeline
 │   └── MODIFICATION_LOG.md           # Deviations from plan
@@ -334,7 +346,7 @@ chapters/chapter_X.md         ← assembled from scenes
 manuscript/CURRENT_MANUSCRIPT.md  ← built from chapters
 ```
 
-Tracking files (`CONTINUITY_TRACKER.md`, `MISC_STORY_NOTES.md`, `MODIFICATION_LOG.md`, `SCENE_COMPLETION_STATUS.md`, `SCENE_PLAN.md`) are updated after every scene and serve as persistent memory across sessions.
+Tracking files (`CONTINUITY_TRACKER.md`, `MISC_STORY_NOTES.md`, `MODIFICATION_LOG.md`, `SCENE_COMPLETION_STATUS.md`, `SCENE_PLAN.md`) and `wiki/` pages are updated after every scene and serve as persistent memory across sessions.
 
 ## Manuscript Format
 
@@ -439,3 +451,55 @@ After I approve, append the chapter to manuscript/CURRENT_MANUSCRIPT.md and comm
 - **Don't skip post-scene.** Every skipped update is compounding debt. The tracking files keep future scenes accurate.
 - **Run audits at story beats.** Act breaks, midpoints, and major revelations are natural checkpoints.
 - **Scene files are your archive.** They're never deleted. If you need to revisit what was originally written vs. what ended up in a chapter, the scene files are your source of truth.
+- **The wiki compounds.** Each scene makes the wiki richer. By chapter 10, character pages have detailed relationship histories, plot thread pages track every escalation, and the timeline is comprehensive — all without you maintaining it manually.
+
+## Story Wiki
+
+The story wiki is a set of compiled, cross-referenced markdown pages in `wiki/` that break your monolithic planning files into focused, lookupable knowledge. Think of it as a fan wiki for your novel — but maintained by Claude as you write.
+
+### What's In It
+
+| Directory | Content | Example Pages |
+|-----------|---------|---------------|
+| `wiki/characters/` | One page per major character | `elena-vasquez.md`, `marcus-chen.md` |
+| `wiki/locations/` | One page per significant location | `the-observatory.md`, `district-7.md` |
+| `wiki/plot-threads/` | One page per major thread | `missing-artifact.md`, `elena-marcus-rivalry.md` |
+| `wiki/world/` | World mechanics by type | `magic-system.md`, `political-factions.md` |
+| `wiki/themes.md` | Core themes and how they manifest | — |
+| `wiki/timeline.md` | Chronological event sequence | — |
+
+### How It's Built
+
+After setup, before your first writing session, ask Claude to build the wiki from your planning files:
+
+```
+Read all planning files and build the story wiki in wiki/ following the structure
+and formats described in CLAUDE.md. Cross-reference between pages.
+```
+
+Claude reads your BookWeaverAI exports and creates 10-30+ pages depending on your story's complexity.
+
+### How It Stays Current
+
+After every scene, the `post-scene` workflow updates any wiki pages affected by what happened. Character relationships shifted? Character page updated. New location details established? Location page updated. Plot thread advanced? Thread page updated. Timeline event occurred? Timeline updated.
+
+You don't maintain the wiki manually — it grows with your manuscript.
+
+### How It Helps Writing
+
+The `continuity-precheck` agent reads relevant wiki pages when building the Scene Brief. Instead of scanning 60K+ tokens of raw planning output to find a character detail, it reads the 500-word character page directly. This means:
+
+- **Faster, more accurate prechecks** — the agent finds what it needs without scanning everything
+- **Better continuity** — compiled knowledge doesn't get lost in long documents
+- **Smaller writing context** — more room for the actual scene in the context window
+
+### Wiki vs. Continuity Tracker
+
+These serve different purposes and both are needed:
+
+| | Continuity Tracker | Story Wiki |
+|---|---|---|
+| **Tracks** | Current state (where is everyone now?) | Permanent knowledge (who is everyone?) |
+| **Changes** | Overwrites with latest state | Accumulates history |
+| **Scope** | Characters, objects, timeline at this moment | Full reference: arcs, relationships, world systems, themes |
+| **Used for** | "Where did we leave Character A?" | "What are Character A's speech patterns?" |

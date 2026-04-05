@@ -26,7 +26,7 @@ Your primary writing command. Replaces manual prompting.
 ```
 
 What happens:
-1. Spawns the **continuity-precheck** and **voice-profiler** agents in parallel — one produces a Scene Brief, the other a Voice Profile for the POV character
+1. Spawns the **continuity-precheck** and **voice-profiler** agents in parallel — one produces a Scene Brief (referencing relevant wiki pages), the other a Voice Profile for the POV character
 2. Loads CLAUDE.md, rules files, scene plan, chapter outline, Scene Brief, and Voice Profile
 3. Reads the previous 2-3 scenes for voice continuity
 4. Identifies the emotional architecture (entry state, turn, landing) and voice anchors
@@ -47,10 +47,11 @@ What happens:
 1. Updates `continuity/CONTINUITY_TRACKER.md` with every new detail
 2. Updates `MISC_STORY_NOTES.md` with craft analysis
 3. Documents deviations in `continuity/MODIFICATION_LOG.md` (if any)
-4. Marks the scene complete in `SCENE_PLAN.md`
-5. Updates `SCENE_COMPLETION_STATUS.md`
-6. Creates a structured git commit
-7. Reports chapter progress — if all scenes in the chapter are complete, prompts you to run `/project:build-chapter X`
+4. Updates relevant `wiki/` pages (characters, locations, plot threads, timeline)
+5. Marks the scene complete in `SCENE_PLAN.md`
+6. Updates `SCENE_COMPLETION_STATUS.md`
+7. Creates a structured git commit
+8. Reports chapter progress — if all scenes in the chapter are complete, prompts you to run `/project:build-chapter X`
 
 ### `/project:build-chapter [chapter_number]`
 
@@ -110,10 +111,10 @@ These run in **separate context windows** so they can read the full manuscript w
 
 | Agent | Purpose | Model | Spawned By |
 |-------|---------|-------|------------|
-| `continuity-precheck` | Pre-scene analysis → Scene Brief | Opus | `write-scene` skill |
+| `continuity-precheck` | Pre-scene analysis → Scene Brief (reads wiki pages) | Opus | `write-scene` skill |
 | `voice-profiler` | POV character voice analysis → Voice Profile | Opus | `write-scene` skill |
 | `scene-validator` | Post-write continuity and rules check | Sonnet | `write-scene` skill |
-| `file-updater` | Post-scene mechanical file updates | Sonnet | `post-scene` skill |
+| `file-updater` | Post-scene mechanical file + wiki updates | Sonnet | `post-scene` skill |
 | `chapter-builder` | Assembles scenes into a chapter file | Sonnet | `build-chapter` skill |
 | `manuscript-auditor` | Deep continuity, consistency, and outline drift audit | Opus | `continuity-audit` skill |
 | `session-closer` | End-of-session summary and notes | Sonnet | `end-session` skill |
@@ -234,7 +235,8 @@ The traditional approach — loading everything into one context and hoping Clau
 
 1. **Separation of concerns**: Reading and compression (agents) vs. creative writing (main session)
 2. **Persistent state**: Tracking files serve as external memory that survives across sessions
-3. **Structured updates**: Nothing gets forgotten because the post-scene process is systematic
-4. **Chapter-level review**: Assembling scenes into chapters provides a natural editing boundary — you review transitions, pacing, and flow at the chapter level before it becomes part of the manuscript
-5. **Periodic verification**: Audits catch what tracking files miss
-6. **Voice preservation**: Always loading the last 2-3 full scenes keeps voice consistent even when the full manuscript can't be loaded
+3. **Compiled knowledge**: The story wiki provides pre-organized, cross-referenced reference pages — Claude looks up specific character or plot details instead of re-scanning entire planning documents
+4. **Structured updates**: Nothing gets forgotten because the post-scene process is systematic
+5. **Chapter-level review**: Assembling scenes into chapters provides a natural editing boundary — you review transitions, pacing, and flow at the chapter level before it becomes part of the manuscript
+6. **Periodic verification**: Audits catch what tracking files miss
+7. **Voice preservation**: Always loading the last 2-3 full scenes keeps voice consistent even when the full manuscript can't be loaded

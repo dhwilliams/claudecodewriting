@@ -20,6 +20,7 @@ The following files are created during Project Setup and accumulate content as y
 - `manuscript/CURRENT_MANUSCRIPT.md` - Assembled chapters (starts empty)
 - `chapters/` - Individual assembled chapter files
 - `scenes/` - Individual scene files (archive)
+- `wiki/` - Story wiki: compiled, cross-referenced knowledge pages (see Story Wiki section)
 - `MISC_STORY_NOTES.md` - For ongoing notes and decisions
 - `continuity/CONTINUITY_TRACKER.md` - Established character, world, and timeline details
 - `continuity/MODIFICATION_LOG.md` - Documented deviations from plan
@@ -31,7 +32,7 @@ The following files are created during Project Setup and accumulate content as y
 
 ```bash
 # Create project directories
-mkdir -p {manuscript,scenes,session-notes,continuity,chapters}
+mkdir -p {manuscript,scenes,session-notes,continuity,chapters,wiki}
 
 # Create tracking files
 touch manuscript/CURRENT_MANUSCRIPT.md
@@ -98,6 +99,104 @@ You are not generating isolated scenes — you are extending a living narrative.
 
 Above all else: this is a story about people. The plot serves the humanity, never the reverse. If a scene is technically accomplished but emotionally hollow, it has failed. If a scene makes the reader ache for these characters, it has succeeded — even if nothing dramatic happens in it. Write the characters first. The story is what happens to them.
 
+## Story Wiki
+
+The `wiki/` directory is a persistent, compiled knowledge base for your novel. Unlike the raw planning files (which are monolithic documents covering everything), the wiki breaks your story into focused, cross-referenced pages that are easy to look up and keep current.
+
+### Why It Exists
+
+The planning files from BookWeaverAI — particularly the Starter Template and Expanded Outline — can be tens of thousands of words each. When Claude needs to check a character's eye color, a faction's political stance, or when a plot thread was planted, it has to scan entire documents. The wiki compiles this knowledge once and keeps it organized, so lookups are fast and nothing gets lost as the manuscript grows.
+
+The wiki works alongside `CONTINUITY_TRACKER.md`, not as a replacement. The tracker captures the *current state* of the story (where characters are now, what they know now). The wiki captures *permanent reference knowledge* (who characters are, how the world works, where plot threads connect).
+
+### Wiki Structure
+
+```
+wiki/
+├── characters/
+│   ├── [character-name].md          # One page per major character
+│   └── ...
+├── locations/
+│   ├── [location-name].md           # One page per significant location
+│   └── ...
+├── plot-threads/
+│   ├── [thread-name].md             # One page per major plot thread
+│   └── ...
+├── world/
+│   ├── [system-or-concept].md       # Magic systems, tech, politics, culture
+│   └── ...
+├── themes.md                        # Core themes and how they manifest
+└── timeline.md                      # Chronological event sequence
+```
+
+### Character Page Format
+
+```markdown
+# [Character Name]
+
+## Identity
+- **Role**: [protagonist / antagonist / supporting]
+- **Age**: [age]
+- **Physical**: [key distinguishing features]
+- **Speech patterns**: [voice notes — dialect, vocabulary level, verbal habits]
+
+## Arc
+- **Starting state**: [who they are at the story's beginning]
+- **Core want / core need**: [external goal / internal need]
+- **Key turning points**: [chapter/scene references]
+- **Ending state**: [who they become]
+
+## Relationships
+- **[Character B]**: [nature of relationship, how it evolves]
+- **[Character C]**: [nature of relationship, how it evolves]
+
+## Plot Threads
+- Connected to: [thread-name], [thread-name]
+
+## Notes
+- [Anything else relevant — secrets, knowledge gaps, symbolic associations]
+```
+
+### Building the Initial Wiki
+
+After setting up the project with your BookWeaverAI exports, build the wiki before writing your first scene:
+
+```
+Read all planning files (FINAL_NOVEL_CONCEPT.md, STARTER_TEMPLATE.md, EXPANDED_OUTLINE.md,
+CHAPTER_OUTLINE.md, SCENE_PLAN.md, STORY_RULES.md, WORLD_RULES.md, WRITING_RULES.md, and
+SUPPLEMENTARY_MATERIALS.md if present).
+
+Build the story wiki in the wiki/ directory:
+- One page per major character in wiki/characters/
+- One page per significant location in wiki/locations/
+- One page per major plot thread in wiki/plot-threads/
+- World mechanics pages in wiki/world/ (one per system — magic, politics, technology, etc.)
+- wiki/themes.md covering core themes and how they manifest
+- wiki/timeline.md with the chronological event sequence
+
+Cross-reference between pages. Use the character and location page formats from CLAUDE.md.
+After creating all pages, list what you built.
+```
+
+### Maintaining the Wiki
+
+The wiki is updated as part of the post-scene workflow. After each scene is approved, the **file-updater** agent should:
+
+1. Check if any wiki pages need updating based on what happened in the scene
+2. Update character pages if relationships shifted, new details were established, or arc milestones were reached
+3. Update location pages if new details about a setting were established
+4. Update plot thread pages if a thread advanced, a new one was introduced, or one was resolved
+5. Update the timeline with any new events
+6. Add cross-references where new connections were established
+
+Wiki updates are incremental — only touch what changed. The goal is compiled knowledge that stays current without manual effort.
+
+### Using the Wiki During Writing
+
+The **continuity-precheck** agent should read relevant wiki pages alongside the manuscript when producing the Scene Brief. For a scene featuring Character A at Location X involving Plot Thread Y, the agent pulls those specific wiki pages rather than scanning the full planning files.
+
+This keeps the writing context focused: instead of loading 60K tokens of raw planning output, Claude gets the specific compiled pages it needs for the scene at hand.
+
 ## Writing Process
 
 ### Before Each Writing Session
@@ -156,6 +255,14 @@ git checkout -b writing-[DATE]-[SCENE-NUMBERS]
     - `continuity/MODIFICATION_LOG.md` with changes and rationale
     - Consider updating `EXPANDED_OUTLINE.md` if significant changes
 
+    **Wiki Updates** — check and update relevant pages in `wiki/`:
+
+    - `wiki/characters/` — update character pages if relationships changed, new details established, or arc milestones reached
+    - `wiki/locations/` — update location pages if new setting details were described
+    - `wiki/plot-threads/` — update thread pages if a thread advanced, was introduced, or resolved
+    - `wiki/timeline.md` — add any significant events with scene references
+    - Add cross-references between pages where new connections were established
+
 ### After Each Scene
 
 1. **Commit Your Work**
@@ -184,6 +291,7 @@ git commit -m "Completed Scene [X].[Y]: [Scene Title]
 - [ ] `MISC_STORY_NOTES.md` - Craft notes added
 - [ ] `continuity/CONTINUITY_TRACKER.md` - New details tracked
 - [ ] `continuity/MODIFICATION_LOG.md` - Changes documented (if deviations)
+- [ ] `wiki/` - Relevant wiki pages updated (characters, locations, plot threads, timeline)
 - [ ] `SCENE_COMPLETION_STATUS.md` - Progress updated
 - [ ] Git commit completed
 
@@ -246,8 +354,9 @@ git commit -m "Completed Scene [X].[Y]: [Scene Title]
 2. **Review CONTINUITY_TRACKER.md** for current character locations, emotional states, timeline
 3. **Check MISC_STORY_NOTES.md** for recent craft notes and story developments
 4. **Read WRITING_RULES.md**, **STORY_RULES.md**, **WORLD_RULES.md**, **FINAL_NOVEL_CONCEPT.md**, **CHAPTER_OUTLINE.md**, and **SUPPLEMENTARY_MATERIALS.md** (if present) for voice/tone consistency, world/story constraints, supplementary lore/world-building, and chapter-level context
-5. **Read manuscript/CURRENT_MANUSCRIPT.md** and any unassembled scenes in `scenes/` — absorb the complete narrative state before writing
-6. **Create git branch**: `git checkout -b writing-[DATE]-[SCENE-NUMBERS]`
+5. **Read relevant wiki pages** — identify which characters, locations, and plot threads are involved in the upcoming scene(s), then read their wiki pages in `wiki/characters/`, `wiki/locations/`, `wiki/plot-threads/`, and `wiki/world/` for compiled reference knowledge
+6. **Read manuscript/CURRENT_MANUSCRIPT.md** and any unassembled scenes in `scenes/` — absorb the complete narrative state before writing
+7. **Create git branch**: `git checkout -b writing-[DATE]-[SCENE-NUMBERS]`
 
 ### SCENE WRITING PROTOCOL
 
@@ -255,8 +364,9 @@ git commit -m "Completed Scene [X].[Y]: [Scene Title]
 1. **Identify next scene** from SCENE_PLAN.md (first `- [ ]` incomplete scene)
 2. **Pre-writing preparation** — before generating any prose:
    - Read the scene plan entry and the corresponding chapter context from CHAPTER_OUTLINE.md
+   - Read the wiki pages for the POV character, any other characters in the scene, the scene's location, and any active plot threads — use these as compiled reference rather than re-scanning full planning files
    - Identify the scene's emotional architecture: entry state, turn, and landing
-   - Note the POV character and settle into their voice by re-reading their most recent scene
+   - Note the POV character and settle into their voice by re-reading their most recent scene and their wiki character page (speech patterns, voice notes)
    - Identify what the reader should know, feel, and fear by the scene's end
    - Check CONTINUITY_TRACKER.md for the POV character's current physical location, emotional state, and knowledge
 3. **Write scene** following all WRITING_RULES.md guidelines AND explicitly adhering to STORY_RULES.md and WORLD_RULES.md:
@@ -278,6 +388,7 @@ git commit -m "Completed Scene [X].[Y]: [Scene Title]
 7. **After approval, run `/project:post-scene`** — this handles all tracking updates:
    - Update `CONTINUITY_TRACKER.md` with new character positions/emotional states/timeline
    - Update `MISC_STORY_NOTES.md` with comprehensive craft analysis
+   - Update relevant `wiki/` pages — character pages if relationships shifted or new details were established, location pages if setting details were added, plot thread pages if threads advanced or resolved, `wiki/timeline.md` if significant events occurred
    - Mark scene complete in `SCENE_PLAN.md` (change `- [ ]` to `- [x]`)
    - Update `SCENE_COMPLETION_STATUS.md`
    - Git commit with scene details
