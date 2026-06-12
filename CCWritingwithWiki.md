@@ -261,6 +261,9 @@ This is the core insight: **compiled knowledge beats re-derived knowledge**. The
 | `wiki/world/` | World systems and mechanics | `magic-system.md`, `political-factions.md`, `technology.md` |
 | `wiki/themes.md` | All themes in one file | Core themes, how each manifests through characters/events |
 | `wiki/timeline.md` | Chronological event sequence | Every significant event with chapter/scene references |
+| `wiki/index.md` | Catalog of every wiki page | One line per page, grouped by category, with a short summary |
+
+Pages reference each other with `[[slug]]` wikilinks — the target page's filename without the extension (e.g. `[[elena-vasquez]]` points to `wiki/characters/elena-vasquez.md`). These links are what make the wiki a *web* instead of a pile of files: they power Obsidian's graph view and BookWeaverAI's mind map, and the writing agents follow them when compiling scene briefs.
 
 The number of pages depends on your story's complexity. A simple contemporary romance might have 8-10 pages. An epic fantasy with multiple factions, a magic system, and dozens of characters could have 30-40+.
 
@@ -303,10 +306,13 @@ Build the story wiki in the wiki/ directory following the structure in CLAUDE.md
    culture, etc.)
 5. wiki/themes.md — each core theme, how it manifests, which characters carry it
 6. wiki/timeline.md — chronological event sequence with chapter/scene references
+7. wiki/index.md — a catalog of every page you created, grouped by category, one line each
+   with a short summary
 
-Cross-reference between pages where relevant. For example, a character page should mention
-which plot threads they're involved in, and a plot thread page should mention which characters
-drive it.
+Cross-reference between pages using [[slug]] wikilinks — the target page's kebab-case
+filename without the extension (e.g. [[elena-vasquez]] for wiki/characters/elena-vasquez.md).
+Link generously: a character page should link the plot threads they drive, a plot thread page
+should link the characters in it, location pages should link who appears there.
 
 After creating all pages, give me a summary of what you built — how many pages, what they
 cover, and anything you think might be missing.
