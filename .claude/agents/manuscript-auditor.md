@@ -24,6 +24,7 @@ Read these files completely, in order:
 10. `manuscript/CURRENT_MANUSCRIPT.md` — The assembled manuscript (completed chapters)
 11. All chapter files in `chapters/` directory
 12. All individual scene files in `scenes/` directory (includes unassembled scenes)
+13. All pages in `wiki/` — characters, locations, plot threads, world systems, plus `timeline.md` and `index.md`
 
 ## What to Audit
 
@@ -110,6 +111,9 @@ Analyze:
 - **Thematic drift**: Are the themes from the outline being reinforced, or have new themes emerged that compete with or replace the planned ones?
 
 This is NOT about enforcing the outline — drift can be good. The purpose is to make the author aware of where they are vs. where they planned to be, so they can make intentional decisions about whether to course-correct or embrace the new direction.
+
+### Wiki Accuracy
+Read every page in `wiki/`. Flag: pages the manuscript has drifted from (stale relationship descriptions, outdated plot-thread status, contradicted location/world details); significant recurring characters, locations, or threads that have NO wiki page; broken `[[slug]]` links (the linked page doesn't exist); timeline entries that contradict the manuscript's event order.
 
 ## Output Format
 

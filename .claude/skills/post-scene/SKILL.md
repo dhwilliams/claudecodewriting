@@ -20,6 +20,7 @@ The agent handles all mechanical updates in its own context:
 - Updating continuity tracker
 - Updating story notes
 - Updating modification log (if deviations exist)
+- Updating affected wiki pages (characters, locations, plot threads, world, timeline)
 - Marking the scene complete in scene plan
 - Updating scene completion status
 - Checking chapter progress
@@ -32,6 +33,7 @@ After the agent finishes, do a quick verification:
 - Confirm `SCENE_PLAN.md` shows the scene as `- [x]`
 - Confirm `continuity/CONTINUITY_TRACKER.md` was updated with new details
 - Confirm `SCENE_COMPLETION_STATUS.md` was updated
+- Spot-check that wiki pages affected by the scene were updated (at minimum, the POV character's page if anything about them changed)
 
 If anything was missed, fix it directly.
 

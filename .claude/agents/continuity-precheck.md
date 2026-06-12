@@ -36,7 +36,8 @@ Check `chapters/` to see which chapters have been assembled. Then read any scene
 7. `STORY_RULES.md` — Narrative constraints (for rule-sensitive elements)
 8. `WORLD_RULES.md` — World mechanics (for world-sensitive elements)
 9. `SUPPLEMENTARY_MATERIALS.md` *(if present)* — Additional lore, magic systems, technology, or world-building details
-10. The most recent 3-5 scenes from `scenes/` directory
+10. `wiki/` — read the wiki pages for the POV character, every other character in the scene, the scene's location(s), and any active plot threads (from `wiki/characters/`, `wiki/locations/`, `wiki/plot-threads/`, `wiki/world/`). These compiled pages are the PREFERRED source for character/location/thread reference details — use them instead of scanning the full planning files.
+11. The most recent 3-5 scenes from `scenes/` directory
 
 ### Large Manuscript Protocol
 
@@ -45,6 +46,7 @@ When the manuscript exceeds approximately 50,000 words:
 - **Summary reading**: For older chapters, rely primarily on `CONTINUITY_TRACKER.md` and `MISC_STORY_NOTES.md` for established details
 - **Targeted reading**: If CONTINUITY_TRACKER.md references specific older scenes for planted elements or unresolved threads, read those specific scenes in full
 - Always read ALL tracking files in full regardless of manuscript size
+- **Wiki-first lookups**: for character identity/voice, location detail, and plot-thread state, read the focused wiki pages rather than re-scanning STARTER_TEMPLATE.md or EXPANDED_OUTLINE.md.
 
 ## Output: Scene Brief
 

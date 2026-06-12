@@ -81,11 +81,26 @@ Read `SCENE_PLAN.md` and `CHAPTER_OUTLINE.md` to check whether the written scene
 
 If the scene matched the plan, skip this step.
 
-### 5. Mark Scene Complete
+### 5. Update Wiki Pages
+
+Read the relevant pages in `wiki/` and update every page this scene affects:
+
+- `wiki/characters/` — for each character who appeared or was referenced: new permanent details, relationship shifts (update BOTH characters' pages), arc milestones reached, secrets revealed
+- `wiki/locations/` — new physical or atmospheric details for any location in the scene; add this scene to the page's "Appears In" list; create a page for a significant new location
+- `wiki/plot-threads/` — record advancement, escalation, or resolution with this scene's reference; create a page for a newly introduced thread; mark resolved threads as resolved
+- `wiki/world/` — new mechanics revealed, used, or clarified
+- `wiki/timeline.md` — append significant events with the scene reference
+- `wiki/index.md` (if present) — add one-line entries for any pages you created
+
+Preserve and extend `[[slug]]` cross-links — links use the target page's kebab-case filename without the extension (e.g. `[[elena-vasquez]]` points to `wiki/characters/elena-vasquez.md`). When you record a relationship or connection, link the other page.
+
+If `wiki/` is empty (the wiki hasn't been built yet), skip this step and note it in your report.
+
+### 6. Mark Scene Complete
 
 In `SCENE_PLAN.md`, find the entry for this scene and change `- [ ]` to `- [x]`.
 
-### 6. Update Scene Completion Status
+### 7. Update Scene Completion Status
 
 Add to `SCENE_COMPLETION_STATUS.md`:
 
@@ -102,18 +117,18 @@ If this is the first entry for a chapter, add the chapter header:
 - [x] Scene [X].[Y]: [Scene Title] — [DATE] — [Word Count] words
 ```
 
-### 7. Check Chapter Progress
+### 8. Check Chapter Progress
 
 Read `SCENE_PLAN.md` to determine the chapter progress for this scene's chapter:
 - Count total scenes in Chapter [X]
 - Count completed scenes (marked `- [x]`) in Chapter [X]
 
-### 8. Git Commit
+### 9. Git Commit
 
 Stage the scene file and all modified tracking files:
 
 ```
-git add scenes/scene_[X]_[Y].md continuity/CONTINUITY_TRACKER.md MISC_STORY_NOTES.md SCENE_PLAN.md SCENE_COMPLETION_STATUS.md
+git add scenes/scene_[X]_[Y].md continuity/CONTINUITY_TRACKER.md MISC_STORY_NOTES.md SCENE_PLAN.md SCENE_COMPLETION_STATUS.md wiki/
 ```
 
 If the modification log was updated, add that too:
@@ -132,10 +147,11 @@ Completed Scene [X].[Y]: [Scene Title]
 
 Do NOT push to remote.
 
-### 9. Report
+### 10. Report
 
 Return a summary of:
 - All files updated
+- Wiki pages updated or created (list them)
 - Word count of the scene
 - Current progress (scenes completed / total)
 - **Chapter [X] progress: [Y/Z scenes complete]**
