@@ -43,8 +43,11 @@ The planning files used by this writing system come from the **[BookWeaverAI](ht
 | `WRITING_RULES.md` | Project Settings | Prose style guide, voice rules |
 | `STORY_RULES.md` | Project Inputs | Narrative constraints and conventions |
 | `WORLD_RULES.md` | Project Inputs | World mechanics and laws |
+| `START_HERE.md` | Export package readme | Orientation |
+| `wiki/` | Story Wiki page — optional | Pre-built story wiki, drops straight into `wiki/` |
+| `WIKI_REBUILD_PROMPT.md` | Story Wiki page | Rebuild or extend the wiki with any AI |
 
-All 8 files are included in the ZIP. You can also download the 5 step files individually from the export page.
+All 8 planning files are included in the ZIP, along with `START_HERE.md`, the `wiki/` folder (when built), and `WIKI_REBUILD_PROMPT.md`. You can also download the 5 step files individually from the export page.
 
 ### Supplementary Materials (Optional)
 
@@ -113,7 +116,7 @@ git add .
 git commit -m "Writing project initialized"
 ```
 
-3. **Build the story wiki** (see [Story Wiki](#story-wiki) section below)
+3. **Build the story wiki** (see [Story Wiki](#story-wiki) section below) (skip if your export already included a `wiki/` folder — it's pre-built)
 
 You will also need to copy the `CLAUDE.md`, `.claude/` directory, and any skill/agent configurations from the [template repository](https://github.com/dhwilliams/claudecodewriting.git) for the slash commands and agents to work.
 
@@ -469,6 +472,8 @@ The story wiki is a set of compiled, cross-referenced markdown pages in `wiki/` 
 | `wiki/timeline.md` | Chronological event sequence | — |
 
 ### How It's Built
+
+> **Skip this if your BookWeaverAI export included a `wiki/` folder.** The wiki is already built — do a quick review pass of the pages instead. `WIKI_REBUILD_PROMPT.md` from your export rebuilds or extends the wiki any time, with any AI.
 
 After setup, before your first writing session, ask Claude to build the wiki from your planning files:
 

@@ -126,8 +126,13 @@ wiki/
 │   ├── [system-or-concept].md       # Magic systems, tech, politics, culture
 │   └── ...
 ├── themes.md                        # Core themes and how they manifest
-└── timeline.md                      # Chronological event sequence
+├── timeline.md                      # Chronological event sequence
+└── index.md                         # Catalog of every wiki page (ships with BookWeaverAI exports)
 ```
+
+### Cross-Linking Convention
+
+Wiki pages reference each other with `[[slug]]` wikilinks — the target page's kebab-case filename without the extension (e.g. `[[elena-vasquez]]` → `wiki/characters/elena-vasquez.md`). Preserve existing links when editing pages and add links whenever a meaningful new connection appears: they power Obsidian's graph view and BookWeaverAI's mind map.
 
 ### Character Page Format
 
@@ -157,7 +162,66 @@ wiki/
 - [Anything else relevant — secrets, knowledge gaps, symbolic associations]
 ```
 
+### Location Page Format
+
+```markdown
+# [Location Name]
+
+## Description
+[Physical description — layout, scale, defining features]
+
+## Atmosphere
+[Sensory and emotional texture — sounds, smells, light, mood]
+
+## Appears In
+- [Chapter/scene references]
+
+## Symbolic Meaning
+[What this place represents in the story, if anything]
+
+## Connected Characters
+- [[character-slug]] — [relationship to this place]
+```
+
+### Plot Thread Page Format
+
+```markdown
+# [Thread Name]
+
+## Setup
+[How and where the thread was planted]
+
+## Escalation
+- [Escalation point, in order, with scene reference]
+- [Escalation point, in order, with scene reference]
+
+## Resolution
+[How it resolves — or "unresolved by design"]
+
+## Appears In
+- [Chapter/scene references]
+
+## Connected Characters
+- [[character-slug]] — [their role in this thread]
+```
+
+### World Page Format
+
+```markdown
+# [System Name]
+
+[How it works — rules, limits, costs]
+
+[How it shapes daily life and the plot]
+
+## Connected Characters & Locations
+- [[character-slug]] — [their relationship to this system]
+- [[location-slug]] — [how this system manifests there]
+```
+
 ### Building the Initial Wiki
+
+> **Skip this if your BookWeaverAI export included a `wiki/` folder.** The wiki is already built — do a quick review pass of the pages instead. `WIKI_REBUILD_PROMPT.md` from your export rebuilds or extends the wiki any time, with any AI.
 
 After setting up the project with your BookWeaverAI exports, build the wiki before writing your first scene:
 

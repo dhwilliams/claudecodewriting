@@ -64,6 +64,7 @@ This gives you a file like `The_Crimson_Divide_BookWeaver_Export.zip` containing
 
 | File | What It Is |
 |------|-----------|
+| `START_HERE.md` | What's in the package + quick-start pointers |
 | `FINAL_NOVEL_CONCEPT.md` | Your finalized novel concept (Step 1) |
 | `STARTER_TEMPLATE.md` | Characters, world, plot structure (Step 2) |
 | `EXPANDED_OUTLINE.md` | Full novel outline (Step 3) |
@@ -72,8 +73,12 @@ This gives you a file like `The_Crimson_Divide_BookWeaver_Export.zip` containing
 | `WRITING_RULES.md` | Your prose style guide |
 | `STORY_RULES.md` | Narrative constraints and conventions |
 | `WORLD_RULES.md` | World mechanics and laws |
+| `wiki/` | **Your Story Wiki, pre-built** — if you built it on BookWeaverAI's Story Wiki page |
+| `WIKI_REBUILD_PROMPT.md` | Rebuilds/extends the wiki with any AI, any time |
 
 If you have additional world-building material (magic systems, technology specs, detailed histories), you can also create a `SUPPLEMENTARY_MATERIALS.md` file manually and add it to your project.
+
+> **Did your export include a `wiki/` folder?** Then your Story Wiki is already built — when you reach the [Building the Wiki](#building-the-wiki) section below, you can **skip it entirely** and jump to [Reviewing and Editing Wiki Pages](#reviewing-and-editing-wiki-pages).
 
 ---
 
@@ -198,7 +203,7 @@ YourNovelTitle/
 │   └── CURRENT_MANUSCRIPT.md          # Empty — your novel goes here
 ├── chapters/                          # Assembled chapter files
 ├── scenes/                            # Individual scene files (scene-based only)
-├── wiki/                              # Empty — you'll build this next
+├── wiki/                              # Pre-built if exported from BookWeaverAI; else built next
 │   ├── characters/
 │   ├���─ locations/
 │   ├── plot-threads/
@@ -262,6 +267,8 @@ The number of pages depends on your story's complexity. A simple contemporary ro
 ---
 
 ## Building the Wiki
+
+> **Skip this section if you exported from BookWeaverAI with a `wiki/` folder.** BookWeaverAI's Story Wiki page builds the wiki for you, and the export drops it into exactly the right place — your `wiki/` directory is already populated. Just do a quick [review pass](#reviewing-and-editing-wiki-pages) and move on to your first writing session. (Want to rebuild or extend it later? Your export includes `WIKI_REBUILD_PROMPT.md`, which works with any AI.)
 
 This is a one-time step you do before your first writing session. It takes about 5-10 minutes.
 
