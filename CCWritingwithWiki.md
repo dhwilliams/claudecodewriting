@@ -708,6 +708,27 @@ She appears in scenes 3.2, 5.1, and 7.4. Pull her details from those scenes and 
 planning files.
 ```
 
+### "I already set up my project — or started writing — can I add the wiki now?"
+
+Yes. The wiki isn't wired in during setup; the agents simply use it whenever a `wiki/` folder exists at your project root. So you can drop one in at any point — no re-clone, no configuration.
+
+**If you built the wiki in BookWeaverAI** (it was in your export, or you built it on the Story Wiki page and re-exported), copy just that folder into your project root. It won't disturb your manuscript or tracking files:
+
+```bash
+# from your project root
+unzip -o ~/Downloads/Your_Project_BookWeaver_Export.zip -d /tmp/bwa-export
+cp -R /tmp/bwa-export/wiki ./wiki
+git add wiki && git commit -m "Add Story Wiki"
+```
+
+**If you don't have one yet,** run `WIKI_REBUILD_PROMPT.md` from your export in Claude Code, or just ask: *"Read all planning files and build the story wiki in wiki/ following CLAUDE.md."*
+
+**If you'd already written some scenes or chapters before adding it,** the wiki was built from your *plan*, not your draft — so bring it up to date once:
+
+> *I just added the wiki/ folder. Read the manuscript so far and update the wiki pages to match what's actually been written.*
+
+After that single reconcile, `post-scene` / `post-chapter` keeps the wiki current automatically, and you're back on the normal rails.
+
 ### "How big does the wiki get?"
 
 It depends on your story. Rough guide:

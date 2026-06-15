@@ -484,6 +484,31 @@ and formats described in CLAUDE.md. Cross-reference between pages.
 
 Claude reads your BookWeaverAI exports and creates 10-30+ pages depending on your story's complexity.
 
+### Adding the Wiki Later (Already Set Up or Mid-Draft)
+
+You can add a wiki to an existing project at any time — even after you've started writing. There's nothing to configure: the agents use the wiki automatically the moment a `wiki/` folder is present at your project root. No re-clone, no setup edits.
+
+**If you have a wiki from BookWeaverAI** (it was in your export, or you built it on the Story Wiki page and re-exported), copy just that folder in — it won't touch your manuscript or tracking files:
+
+```bash
+# run from your project root
+unzip -o ~/Downloads/Your_Project_BookWeaver_Export.zip -d /tmp/bwa-export
+cp -R /tmp/bwa-export/wiki ./wiki
+git add wiki && git commit -m "Add Story Wiki"
+```
+
+**No wiki to copy?** Run `WIKI_REBUILD_PROMPT.md` from your export in Claude Code, or just ask Claude to build it (see *How It's Built* above).
+
+**One extra step if you've already drafted scenes:** the wiki is built from your *planning* files, so it won't yet reflect what actually happened on the page. Bring it current once — after that it maintains itself:
+
+```
+I just added the wiki/ folder. Read the manuscript so far and update the wiki pages
+to match what's actually been written — relationships, revealed details, plot-thread
+advancement, and timeline.
+```
+
+Or run `/project:continuity-audit` — the auditor checks the wiki against your manuscript and flags anything stale. From here on, `post-scene` keeps it current automatically.
+
 ### How It Stays Current
 
 After every scene, the `post-scene` workflow updates any wiki pages affected by what happened. Character relationships shifted? Character page updated. New location details established? Location page updated. Plot thread advanced? Thread page updated. Timeline event occurred? Timeline updated.
